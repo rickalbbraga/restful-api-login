@@ -16,10 +16,11 @@ namespace Restful.Login.Infra.Data.Migrations
                     last_name = table.Column<string>(type: "varchar(50)", nullable: true),
                     email = table.Column<string>(type: "varchar(50)", nullable: true),
                     confirm_email = table.Column<string>(type: "varchar(50)", nullable: true),
+                    birth_date = table.Column<DateTime>(type: "date", nullable: false),
                     password = table.Column<string>(type: "varchar(150)", nullable: true),
                     confirm_password = table.Column<string>(type: "varchar(150)", nullable: true),
                     created_at = table.Column<DateTime>(type: "date", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "date", nullable: false)
+                    updated_at = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {

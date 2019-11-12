@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Restful.Login.Infra.Data.Migrations
 {
     [DbContext(typeof(UserRegisterContext))]
-    [Migration("20191111160310_InitialMigrations")]
+    [Migration("20191112152207_InitialMigrations")]
     partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,10 @@ namespace Restful.Login.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id")
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnName("birth_date")
+                        .HasColumnType("date");
 
                     b.Property<string>("ConfirmEmail")
                         .HasColumnName("confirm_email")
@@ -53,7 +57,7 @@ namespace Restful.Login.Infra.Data.Migrations
                         .HasColumnName("password")
                         .HasColumnType("varchar(150)");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnName("updated_at")
                         .HasColumnType("date");
 

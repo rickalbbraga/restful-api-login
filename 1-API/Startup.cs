@@ -1,6 +1,9 @@
 using API.Configurations;
 using Application.Services;
+using Domain.Contracts.Interfaces.Repositories;
 using Domain.Contracts.Interfaces.Services;
+using Infra.Data.Interfaces;
+using Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +30,9 @@ namespace Restful.Login.API
             ContextConfiguration.AddContext(services, Configuration);
 
             services.AddScoped<IUserRegisterService, UserRegisterService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRegisterRepository, UserRegisterRepository>();
 
             
         }

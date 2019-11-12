@@ -36,6 +36,11 @@ namespace Infra.Data.EntitiesConfiguration
                 .HasColumnType("varchar(50)");
 
             builder
+                .Property(u => u.BirthDate)
+                .HasColumnName("birth_date")
+                .HasColumnType("date");
+
+            builder
                 .Property(u => u.Password)
                 .HasColumnName("password")
                 .HasColumnType("varchar(150)");
@@ -54,6 +59,9 @@ namespace Infra.Data.EntitiesConfiguration
                 .Property(u => u.UpdatedAt)
                 .HasColumnName("updated_at")
                 .HasColumnType("date");
+
+            builder
+                .Ignore(u => u.Error);
         }
     }
 }
