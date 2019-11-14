@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\3-Domain\Restful.Login.Domain.csproj" />
+    <ProjectReference Include="..\4-Infra\4.1-Infra.CrossCutting\Restful.Login.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\4-Infra\4.2-Infra.Data\Restful.Login.Infra.Data.csproj" />
     <ProjectReference Include="..\2-Application\Restful.Login.Application.csproj" />
   </ItemGroup>

@@ -38,6 +38,9 @@
               "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
                 "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
               },
+              "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj"
+              },
               "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
                 "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
               }
@@ -227,6 +230,70 @@
               "version": "[8.5.1, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
+        "projectName": "Restful.Login.Infra.CrossCutting",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {
+              "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj"
+              },
+              "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
           "imports": [
             "net461",
             "net462",

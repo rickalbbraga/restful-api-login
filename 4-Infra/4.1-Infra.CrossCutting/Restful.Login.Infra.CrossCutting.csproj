@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\2-Application\Restful.Login.Application.csproj" />
     <ProjectReference Include="..\4.2-Infra.Data\Restful.Login.Infra.Data.csproj" />
   </ItemGroup>
 

@@ -1,20 +1,11 @@
 using API.Configurations;
-using Application.Services;
-using AutoMapper;
-using Domain.Contracts.Interfaces.Repositories;
-using Domain.Contracts.Interfaces.Services;
-using Infra.Data.Interfaces;
-using Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Restful.Login.Application.Mappers;
-using Restful.Login.Application.Services;
-using Restful.Login.Domain.Contracts.Interfaces.Repositories;
-using Restful.Login.Domain.Contracts.Interfaces.Services;
-using Restful.Login.Infra.Data.Repositories;
+using Restful.Login.API.Configurations;
+using Restful.Login.Infra.CrossCutting.IoC;
 
 namespace Restful.Login.API
 {
@@ -32,27 +23,8 @@ namespace Restful.Login.API
         {
             SwaggerConfiguration.AddSwaggerService(services);
             ContextConfiguration.AddContext(services, Configuration);
-
-            services.AddScoped<IUserRegisterService, UserRegisterService>();
-            services.AddScoped<IGradeService, GradeService>();
-            services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<ICourseService, CourseService>();
-            services.AddScoped<IRegistrationService, RegistrationService>();
-            services.AddScoped<IStudentGroupService, StudentGroupService>();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserRegisterRepository, UserRegisterRepository>();
-            services.AddScoped<IGradeRepository, GradeRepository>();
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<ICourseRepository, CourseRepository>();
-            services.AddScoped<IStudentGroupRepository, StudentGroupRepository>();
-
-            var mappersConfigurations = new MapperConfiguration(config => {
-                config.AddProfile(new MappersConfiguration());
-            });
-
-            IMapper mapper = mappersConfigurations.CreateMapper();
-            services.AddSingleton(mapper);
+            DependecyInjection.Injections(services);
+            AddMapperService.AddMapper(services);
 
             services.AddControllers();
                 //.AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);

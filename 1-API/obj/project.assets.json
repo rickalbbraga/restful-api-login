@@ -3163,6 +3163,20 @@
           "bin/placeholder/Restful.Login.Domain.dll": {}
         }
       },
+      "Restful.Login.Infra.CrossCutting/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Restful.Login.Application": "1.0.0",
+          "Restful.Login.Infra.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Restful.Login.Infra.CrossCutting.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Restful.Login.Infra.CrossCutting.dll": {}
+        }
+      },
       "Restful.Login.Infra.Data/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -9538,6 +9552,11 @@
       "path": "../3-Domain/Restful.Login.Domain.csproj",
       "msbuildProject": "../3-Domain/Restful.Login.Domain.csproj"
     },
+    "Restful.Login.Infra.CrossCutting/1.0.0": {
+      "type": "project",
+      "path": "../4-Infra/4.1-Infra.CrossCutting/Restful.Login.Infra.CrossCutting.csproj",
+      "msbuildProject": "../4-Infra/4.1-Infra.CrossCutting/Restful.Login.Infra.CrossCutting.csproj"
+    },
     "Restful.Login.Infra.Data/1.0.0": {
       "type": "project",
       "path": "../4-Infra/4.2-Infra.Data/Restful.Login.Infra.Data.csproj",
@@ -9555,6 +9574,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.0.0",
       "Restful.Login.Application >= 1.0.0",
       "Restful.Login.Domain >= 1.0.0",
+      "Restful.Login.Infra.CrossCutting >= 1.0.0",
       "Restful.Login.Infra.Data >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.0.0-rc4",
       "Swashbuckle.AspNetCore.Swagger >= 5.0.0-rc4"
@@ -9597,6 +9617,9 @@
             },
             "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
               "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
+            },
+            "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
+              "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj"
             },
             "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
               "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
