@@ -1,9 +1,8 @@
-﻿using Domain.Entities;
-using System;
+﻿using System;
 
 namespace Restful.Login.Domain.Contracts.Response
 {
-    public class StudentResponse
+    public class CourseResponse
     {
         public Guid Id { get; set; }
 

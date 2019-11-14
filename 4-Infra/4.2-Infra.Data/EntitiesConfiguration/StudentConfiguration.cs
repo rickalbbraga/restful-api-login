@@ -21,12 +21,10 @@ namespace Infra.Data.EntitiesConfiguration
                 .HasColumnType("varchar(50)");
 
             builder
-                .HasOne<Grade>(s => s.Grade)
-                .WithMany(g => g.Students)
-                .HasForeignKey(s => s.GradeId);
-            
-            builder
                 .Ignore(s => s.Error);
+
+            builder
+                .Ignore(s => s.IsValid);
         }
     }
 }

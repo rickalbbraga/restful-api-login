@@ -11,7 +11,7 @@ namespace Infra.Data.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
-        private readonly IUnitOfWork _uow;
+        protected readonly IUnitOfWork _uow;
 
         public BaseRepository(IUnitOfWork uow)
         {
@@ -58,7 +58,7 @@ namespace Infra.Data.Repositories
             return await _uow.Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _uow.Context.Set<T>().ToList();
         }

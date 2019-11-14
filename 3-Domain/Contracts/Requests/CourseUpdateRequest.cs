@@ -2,8 +2,10 @@
 
 namespace Restful.Login.Domain.Contracts.Requests
 {
-    public class StudentRequest
+    public class CourseUpdateRequest
     {
+        public Guid Id { get; set; }
+        
         public string Name { get; set; }
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Restful.Login.Infra.Data.Migrations
 {
     [DbContext(typeof(UserRegisterContext))]
-    [Migration("20191113143933_InitialCreation")]
-    partial class InitialCreation
+    [Migration("20191114193926_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,16 +41,11 @@ namespace Restful.Login.Infra.Data.Migrations
                         .HasColumnName("id")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GradeId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasColumnName("name")
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GradeId");
 
                     b.ToTable("students");
                 });
@@ -103,11 +98,80 @@ namespace Restful.Login.Infra.Data.Migrations
                     b.ToTable("users");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student", b =>
+            modelBuilder.Entity("Restful.Login.Domain.Entities.Course", b =>
                 {
-                    b.HasOne("Domain.Entities.Grade", "Grade")
-                        .WithMany("Students")
-                        .HasForeignKey("GradeId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("course");
+                });
+
+            modelBuilder.Entity("Restful.Login.Domain.Entities.StudentCourse", b =>
+                {
+                    b.Property<Guid>("StudentId")
+                        .HasColumnName("student_id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnName("course_id")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("student_course");
+                });
+
+            modelBuilder.Entity("Restful.Login.Domain.Entities.StudentGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnName("course_id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("student_group");
+                });
+
+            modelBuilder.Entity("Restful.Login.Domain.Entities.StudentCourse", b =>
+                {
+                    b.HasOne("Restful.Login.Domain.Entities.Course", "Course")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Restful.Login.Domain.Entities.StudentGroup", b =>
+                {
+                    b.HasOne("Restful.Login.Domain.Entities.Course", "Course")
+                        .WithMany("StudentGroups")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

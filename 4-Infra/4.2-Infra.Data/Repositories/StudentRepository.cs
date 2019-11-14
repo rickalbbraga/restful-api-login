@@ -9,6 +9,7 @@ namespace Restful.Login.Infra.Data.Repositories
     {
         public StudentRepository(IUnitOfWork uow) : base(uow)
         {
+             
         }
     }
 }

@@ -9,8 +9,6 @@ namespace Domain.Entities
     {
         public string Name { get; private set; }
 
-        public ICollection<Student> Students { get; private set; }
-
         private Grade() { }
 
         [JsonConstructor]
@@ -18,7 +16,6 @@ namespace Domain.Entities
         {
             Id = id;
             Name = name;
-            Students = null;
         }
 
         public static Grade Create(string name)

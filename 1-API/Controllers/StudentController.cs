@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
 using Restful.Login.Domain.Contracts.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,7 +47,51 @@ namespace Restful.Login.API.Controllers
 
                 return Created(string.Empty, response);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Get all students.
+        /// </summary>
+        /// <response code="200">List of students</response>
+        /// <response code="500">If internal error server</response>            
+        [HttpGet]
+        [Route("/students")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> Get()
+        {
+            try
+            {
+                var response = await Task.FromResult(_studentService.GetAll());
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Delete students.
+        /// </summary>
+        /// <response code="204">No Content</response>
+        /// <response code="500">If internal error server</response>            
+        [HttpDelete]
+        [Route("/students/{id}")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            try
+            {
+                await Task.Run(() => _studentService.Delete(id));
+                return NoContent();
+            }
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
             }

@@ -1,5 +1,6 @@
-using Newtonsoft.Json;
+using Restful.Login.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
@@ -7,22 +8,26 @@ namespace Domain.Entities
     {
         public string Name { get; private set; }
 
-        public Guid GradeId { get; private set; }
+        public IList<StudentCourse> StudentCourses { get; private set; }
 
-        public Grade Grade { get; private set; }
+        private Student() 
+        {
+            StudentCourses = new List<StudentCourse>();
+        }
 
-        private Student() {}
-
-        [JsonConstructor]
-        private Student(Guid id, string name, Guid gradeId, Grade grade)
+        private Student(Guid id, string name)
         {
             Id = id;
             Name = name;
-            GradeId = gradeId;
-            Grade = grade;
+            StudentCourses = new List<StudentCourse>();
         }
 
-        public static Student Create(string name, Grade grade)
-            => new Student(Guid.NewGuid(), name, grade.Id, grade);        
+        public static Student Create(string name)
+            => new Student(Guid.NewGuid(), name);       
+        
+        public void RegistreStudent(StudentCourse studentCourses)
+        {
+            StudentCourses.Add(studentCourses);
+        }
     }
 }

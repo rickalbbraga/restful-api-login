@@ -1,6 +1,8 @@
 using Domain.Entities;
 using Infra.Data.EntitiesConfiguration;
 using Microsoft.EntityFrameworkCore;
+using Restful.Login.Domain.Entities;
+using Restful.Login.Infra.Data.EntitiesConfiguration;
 
 namespace Infra.Data.Context
 {
@@ -11,6 +13,10 @@ namespace Infra.Data.Context
         public DbSet<Grade> Grades { get; set; }
 
         public DbSet<Student> Students { get; set; }
+
+        public DbSet<Course> Courses { get; set; }
+
+        public DbSet<StudentCourse> StudentCourses { get; set; }
 
         public UserRegisterContext(DbContextOptions<UserRegisterContext> options)
             : base(options)
@@ -23,6 +29,9 @@ namespace Infra.Data.Context
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new GradeConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentCourseConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentGroupConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

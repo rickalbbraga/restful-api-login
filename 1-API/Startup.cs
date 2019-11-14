@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Restful.Login.Application.Mappers;
 using Restful.Login.Application.Services;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
@@ -37,11 +36,16 @@ namespace Restful.Login.API
             services.AddScoped<IUserRegisterService, UserRegisterService>();
             services.AddScoped<IGradeService, GradeService>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<IStudentGroupService, StudentGroupService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRegisterRepository, UserRegisterRepository>();
             services.AddScoped<IGradeRepository, GradeRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IStudentGroupRepository, StudentGroupRepository>();
 
             var mappersConfigurations = new MapperConfiguration(config => {
                 config.AddProfile(new MappersConfiguration());
