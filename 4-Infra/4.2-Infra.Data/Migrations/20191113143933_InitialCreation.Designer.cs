@@ -9,14 +9,51 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Restful.Login.Infra.Data.Migrations
 {
     [DbContext(typeof(UserRegisterContext))]
-    [Migration("20191112152207_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20191113143933_InitialCreation")]
+    partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0-preview2.19525.5");
+
+            modelBuilder.Entity("Domain.Entities.Grade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("grades");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("GradeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GradeId");
+
+                    b.ToTable("students");
+                });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
@@ -64,6 +101,15 @@ namespace Restful.Login.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.HasOne("Domain.Entities.Grade", "Grade")
+                        .WithMany("Students")
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
