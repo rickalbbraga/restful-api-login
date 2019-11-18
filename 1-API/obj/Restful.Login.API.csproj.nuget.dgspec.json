@@ -1,44 +1,48 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Estudos\\NetCore\\restful-api-login\\1-API\\Restful.Login.API.csproj": {}
+    "C:\\Python\\net-core-3\\RESTful\\Login\\1-API\\Restful.Login.API.csproj": {}
   },
   "projects": {
-    "C:\\Estudos\\NetCore\\restful-api-login\\1-API\\Restful.Login.API.csproj": {
+    "C:\\Python\\net-core-3\\RESTful\\Login\\1-API\\Restful.Login.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\1-API\\Restful.Login.API.csproj",
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\1-API\\Restful.Login.API.csproj",
         "projectName": "Restful.Login.API",
-        "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\1-API\\Restful.Login.API.csproj",
-        "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
-        "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\1-API\\obj\\",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\1-API\\Restful.Login.API.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\1-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj"
               },
-              "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
               },
-              "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj"
               },
-              "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
               }
             }
           }
@@ -55,6 +59,14 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -111,36 +123,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj": {
+    "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj",
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj",
         "projectName": "Restful.Login.Application",
-        "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj",
-        "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
-        "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\obj\\",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
               }
             }
           }
@@ -174,29 +190,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj": {
+    "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj",
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj",
         "projectName": "Restful.Login.Domain",
-        "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj",
-        "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
-        "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\obj\\",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -216,6 +236,10 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[8.5.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -233,39 +257,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
+    "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
         "projectName": "Restful.Login.Infra.CrossCutting",
-        "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
-        "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
-        "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.1-Infra.CrossCutting\\obj\\",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\Restful.Login.Infra.CrossCutting.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.1-Infra.CrossCutting\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\2-Application\\Restful.Login.Application.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\2-Application\\Restful.Login.Application.csproj"
               },
-              "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj"
               }
             }
           }
@@ -293,36 +321,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
+    "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
+        "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
         "projectName": "Restful.Login.Infra.Data",
-        "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
-        "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
-        "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\obj\\",
+        "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
+        "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget-core.devneon.com.br:81/nuget/": {},
+          "http://nuget.devneon.com.br/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj": {
-                "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj"
+              "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
+                "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
               }
             }
           }
@@ -372,7 +404,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
         }
       }
     }

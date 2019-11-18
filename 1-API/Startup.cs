@@ -1,4 +1,5 @@
 using API.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restful.Login.API.Configurations;
 using Restful.Login.Infra.CrossCutting.IoC;
+using System;
 
 namespace Restful.Login.API
 {
@@ -26,6 +28,9 @@ namespace Restful.Login.API
             DependecyInjection.Injections(services);
             AddMapperService.AddMapper(services);
 
+            var assembly = AppDomain.CurrentDomain.Load("Restful.Login.Domain");
+            services.AddMediatR(assembly);
+
             services.AddControllers();
                 //.AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
@@ -44,6 +49,7 @@ namespace Restful.Login.API
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
