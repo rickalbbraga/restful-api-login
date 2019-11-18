@@ -52,5 +52,27 @@ namespace Restful.Login.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
             }
         }
+
+        /// <summary>
+        /// Delete registration.
+        /// </summary>
+        /// <response code="204">No Content</response>
+        /// <response code="500">If internal error server</response>            
+        [HttpDelete]
+        [Route("/registration/{studentId}/{courseId}")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> Delete(Guid studentId, Guid courseId)
+        {
+            try
+            {
+                await Task.Run(() => _registrationService.Delete(studentId, courseId));
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+            }
+        }
     }
 }

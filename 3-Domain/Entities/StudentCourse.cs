@@ -1,7 +1,5 @@
 ﻿using Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Restful.Login.Domain.Entities
 {
@@ -13,10 +11,7 @@ namespace Restful.Login.Domain.Entities
         public Guid CourseId { get; private set; }
         public Course Course { get; private set; }
 
-        private StudentCourse()
-        {
-
-        }
+        private StudentCourse() { }
 
         private StudentCourse(Student student, Course course)
         {

@@ -11,6 +11,7 @@ namespace Domain.Validations
         }            
 
         private IList<string> _error = new List<string>();
+        
         public IList<string> Error
         {
             get => _error;

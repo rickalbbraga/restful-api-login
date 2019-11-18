@@ -27,6 +27,7 @@ namespace Restful.Login.Infra.CrossCutting.IoC
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IStudentGroupRepository, StudentGroupRepository>();
+            services.AddScoped<IRegistrationRepository, RegistrationRepository>();
         }
 
         private static void AddServices(IServiceCollection services)
@@ -37,6 +38,7 @@ namespace Restful.Login.Infra.CrossCutting.IoC
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<IStudentGroupService, StudentGroupService>();
+            services.AddScoped<IRegistrationService, RegistrationService>();
         }
     }
 }

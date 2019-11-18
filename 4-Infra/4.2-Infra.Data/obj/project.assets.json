@@ -8386,39 +8386,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\": {},
+    "C:\\Users\\ricka\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
+      "projectUniqueName": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
       "projectName": "Restful.Login.Infra.Data",
-      "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
-      "packagesPath": "C:\\Users\\ricardo.braga.ext\\.nuget\\packages\\",
-      "outputPath": "C:\\Python\\net-core-3\\RESTful\\Login\\4-Infra\\4.2-Infra.Data\\obj\\",
+      "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\Restful.Login.Infra.Data.csproj",
+      "packagesPath": "C:\\Users\\ricka\\.nuget\\packages\\",
+      "outputPath": "C:\\Estudos\\NetCore\\restful-api-login\\4-Infra\\4.2-Infra.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ricardo.braga.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ricka\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://nuget-core.devneon.com.br:81/nuget/": {},
-        "http://nuget.devneon.com.br/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj": {
-              "projectPath": "C:\\Python\\net-core-3\\RESTful\\Login\\3-Domain\\Restful.Login.Domain.csproj"
+            "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj": {
+              "projectPath": "C:\\Estudos\\NetCore\\restful-api-login\\3-Domain\\Restful.Login.Domain.csproj"
             }
           }
         }
@@ -8468,7 +8464,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
