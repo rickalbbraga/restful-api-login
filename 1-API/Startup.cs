@@ -1,13 +1,16 @@
 using API.Configurations;
+using Infra.Data.Context;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restful.Login.API.Configurations;
 using Restful.Login.Infra.CrossCutting.IoC;
 using System;
+using System.Linq;
 
 namespace Restful.Login.API
 {
@@ -46,6 +49,8 @@ namespace Restful.Login.API
 
             SwaggerConfiguration.AddSwaggerApplicationBuilder(app);
 
+            UpdateDatabase(app);
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -57,6 +62,22 @@ namespace Restful.Login.API
             });
 
             
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<UserRegisterContext>())
+                {
+                    if (context.Database.GetPendingMigrations().Any())
+                    {
+                        context.Database.Migrate();
+                    }
+                }
+            }
         }
     }
 }

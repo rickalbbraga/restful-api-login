@@ -12,7 +12,10 @@ namespace API.Configurations
             string connectionString = configuration.GetConnectionString("Conn");
             services.AddDbContext<UserRegisterContext>(options => {
                 options.UseSqlite(connectionString);
+                
             });
+
+            
         }
     }
 }
