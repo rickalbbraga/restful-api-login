@@ -42,7 +42,7 @@ namespace Restful.Login.API.Controllers
                 var response = await _userRegisterService.Add(userRequest);
                 var notifications = _userRegisterService as Notifiable;
 
-                if (response == null && notifications.Error.Any())
+                if (response == null && !notifications.IsValid)
                     return BadRequest(notifications.Error);
 
                 return Created(string.Empty, response);    

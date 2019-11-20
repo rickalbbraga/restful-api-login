@@ -1,3 +1,4 @@
+using System;
 using Domain.Entities;
 using FluentValidation;
 
@@ -20,6 +21,21 @@ namespace Domain.Validations
             RuleFor(x => x.ConfirmEmail).NotNull().WithErrorCode("10010");;
             RuleFor(x => x.ConfirmEmail).EmailAddress().WithErrorCode("10011");;
             RuleFor(x => x.ConfirmEmail).Equal(x => x.Email).WithErrorCode("10012");
+            RuleFor(x => x.Password).NotEmpty().WithErrorCode("10013");
+            RuleFor(x => x.Password).NotNull().WithErrorCode("10014");
+            RuleFor(x => x.Password).MinimumLength(8).WithErrorCode("10015");
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithErrorCode("10016");
+            RuleFor(x => x.ConfirmPassword).NotNull().WithErrorCode("10017");
+            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithErrorCode("10019");
+           // RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithErrorCode("10020");
+        }
+
+        private bool DateIsValid(string date)
+        {
+            DateTime temp;
+            if (DateTime.TryParse(date, out temp))
+                return true;
+            return false;
         }
     }
 }

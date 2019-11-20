@@ -55,13 +55,10 @@ namespace Restful.Login.API
 
             app.UseAuthorization();
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            
+            });            
         }
 
         private static void UpdateDatabase(IApplicationBuilder app)

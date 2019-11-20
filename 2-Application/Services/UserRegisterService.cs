@@ -22,7 +22,7 @@ namespace Application.Services
         {
             if (userRequest == null)
             {
-                Error.Add("Request invalid");
+                Error.Add("30000");
                 return null;
             }
 
