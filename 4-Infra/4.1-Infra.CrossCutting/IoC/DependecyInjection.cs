@@ -3,18 +3,25 @@ using Domain.Contracts.Interfaces.Repositories;
 using Domain.Contracts.Interfaces.Services;
 using Infra.Data.Interfaces;
 using Infra.Data.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restful.Login.Application.Services;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
+using Restful.Login.Domain.Contracts.Notifications;
+using Restful.Login.Domain.Notifications;
+using Restful.Login.Domain.Utils;
 using Restful.Login.Infra.Data.Repositories;
 
 namespace Restful.Login.Infra.CrossCutting.IoC
 {
     public static class DependecyInjection
     {
-        public static void Injections(IServiceCollection services)
+        public static void Injections(IServiceCollection services, IConfiguration configuration)
         {
+            var rabbitConfiguration = configuration["RabbitConfig"];
+            //services.Configure<RabbitMqConfiguration>(c => configuration.GetSection("RabbitConfig"));
+            services.AddSingleton<IRabbitMq, RabbitMq>();
             AddRepositories(services);
             AddServices(services);
         } 
@@ -40,6 +47,7 @@ namespace Restful.Login.Infra.CrossCutting.IoC
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<IStudentGroupService, StudentGroupService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<ICustomerService, CustomerService>();            
         }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using Domain.Commands;
 using Domain.Contracts.Response;
+using Domain.Validations;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Restful.Login.Domain.Contracts.Interfaces.Services;
+using Restful.Login.Domain.Contracts.Requests;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restful.Login.API.Controllers
@@ -14,11 +18,11 @@ namespace Restful.Login.API.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ICustomerService _customerService;
 
-        public CustomerController(IMediator mediator)
+        public CustomerController(ICustomerService customerService)
         {
-            _mediator = mediator;
+            _customerService = customerService;
         }
 
         /// <summary>
@@ -33,20 +37,17 @@ namespace Restful.Login.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(List<ErrorsResponse>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Post([FromBody]CustomerCreateCommand command)
+        public async Task<ActionResult> Post([FromBody]CustomerRequest request)
         {
             try
             {
-                var response = await _mediator.Send(command);
-                return Ok(response);
+                var response = await _customerService.Add(request);
+                var notifications = _customerService as Notifiable;
 
-                //var response = await _courseService.Add(studentRequest);
-                //var notifications = _courseService as Notifiable;
+                if (response == null && notifications.Error.Any())
+                    return BadRequest(notifications.Error);
 
-                //if (response == null && notifications.Error.Any())
-                //    return BadRequest(notifications.Error);
-
-                //return Created(string.Empty, response);
+                return Created(string.Empty, response);
             }
             catch (Exception ex)
             {

@@ -1,16 +1,13 @@
-using Domain.Entities;
-using MediatR;
-
-namespace Domain.Commands
+﻿namespace Restful.Login.Domain.Contracts.Requests
 {
-    public class CustomerCreateCommand : IRequest<Customer>
+    public class CustomerRequest
     {
         public string FirstName { get; set; }
-        
+
         public string LastName { get; set; }
-        
+
         public string Email { get; set; }
-        
+
         public string Phone { get; set; }
     }
 }

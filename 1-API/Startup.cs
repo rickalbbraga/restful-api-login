@@ -1,16 +1,14 @@
 using API.Configurations;
-using Infra.Data.Context;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restful.Login.API.Configurations;
+using Restful.Login.Domain.Utils;
 using Restful.Login.Infra.CrossCutting.IoC;
 using System;
-using System.Linq;
 
 namespace Restful.Login.API
 {
@@ -28,7 +26,7 @@ namespace Restful.Login.API
         {
             SwaggerConfiguration.AddSwaggerService(services);
             ContextConfiguration.AddContext(services, Configuration);
-            DependecyInjection.Injections(services);
+            DependecyInjection.Injections(services, Configuration);
             AddMapperService.AddMapper(services);
 
             var assembly = AppDomain.CurrentDomain.Load("Restful.Login.Domain");
@@ -47,9 +45,9 @@ namespace Restful.Login.API
                 app.UseDeveloperExceptionPage();
             }
 
-            SwaggerConfiguration.AddSwaggerApplicationBuilder(app);
+            MigrationsExecuteConfiguration.UpdateDatabase(app);
 
-            UpdateDatabase(app);
+            SwaggerConfiguration.AddSwaggerApplicationBuilder(app);
 
             app.UseRouting();
 
@@ -59,22 +57,6 @@ namespace Restful.Login.API
             {
                 endpoints.MapControllers();
             });            
-        }
-
-        private static void UpdateDatabase(IApplicationBuilder app)
-        {
-            using (var serviceScope = app.ApplicationServices
-                .GetRequiredService<IServiceScopeFactory>()
-                .CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<UserRegisterContext>())
-                {
-                    if (context.Database.GetPendingMigrations().Any())
-                    {
-                        context.Database.Migrate();
-                    }
-                }
-            }
         }
     }
 }

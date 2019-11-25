@@ -8,7 +8,7 @@ using Restful.Login.Domain.Notifications;
 
 namespace Domain.Handlers
 {
-    public class CustomerHandler : IRequestHandler<CustomerCreateCommand, string>
+    public class CustomerHandler : IRequestHandler<CustomerCreateCommand, Customer>
     {
         private readonly IMediator _mediator;
         private readonly ICustomerRepository _customerRepository;
@@ -19,21 +19,15 @@ namespace Domain.Handlers
             _customerRepository = customerRepository;
         }
 
-        public async Task<string> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
+        public async Task<Customer> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
         {
             var customer = Customer.Create(request.FirstName, request.LastName, request.Email, request.Phone);
-
+            
             await _customerRepository.Save(customer);
 
-            await _mediator.Publish(new CustomerActionNotification
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                Action = ActionNotification.Criado
-            }, cancellationToken);
-
-            return await Task.FromResult("Cliente registrado com sucesso");
+            await _mediator.Publish(new CustomerActionNotification(customer, ActionNotification.Criado), cancellationToken);
+            
+            return await Task.FromResult(customer);
         }
     }
 }
