@@ -19,9 +19,6 @@ namespace Restful.Login.Infra.CrossCutting.IoC
     {
         public static void Injections(IServiceCollection services, IConfiguration configuration)
         {
-            var rabbitConfiguration = configuration["RabbitConfig"];
-            //services.Configure<RabbitMqConfiguration>(c => configuration.GetSection("RabbitConfig"));
-            services.AddSingleton<IRabbitMq, RabbitMq>();
             AddRepositories(services);
             AddServices(services);
         } 

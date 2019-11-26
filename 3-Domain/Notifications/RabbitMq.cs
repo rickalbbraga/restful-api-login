@@ -23,10 +23,10 @@ namespace Restful.Login.Domain.Notifications
             {
                 var factory = new ConnectionFactory()
                 {
-                    HostName = "172.16.97.41",
-                    Port = 5672,
-                    UserName = "guest",
-                    Password = "guest"
+                    HostName = _rabbitConfiguration.HostName,
+                    Port = _rabbitConfiguration.Port,
+                    UserName = _rabbitConfiguration.UserName,
+                    Password = _rabbitConfiguration.Password
                 };
 
                 using (var connection = factory.CreateConnection())

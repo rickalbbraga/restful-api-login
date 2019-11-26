@@ -27,6 +27,7 @@ namespace Restful.Login.API
             SwaggerConfiguration.AddSwaggerService(services);
             ContextConfiguration.AddContext(services, Configuration);
             DependecyInjection.Injections(services, Configuration);
+            RabbitConfiguration.Set(services, Configuration);
             AddMapperService.AddMapper(services);
 
             var assembly = AppDomain.CurrentDomain.Load("Restful.Login.Domain");
