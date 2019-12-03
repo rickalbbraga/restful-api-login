@@ -2,7 +2,7 @@
 
 namespace Restful.Login.Domain.Contracts.Notifications
 {
-    public interface IRabbitMq
+    public interface IRabbitMqService
     {
         bool PublishMessage(string queue, object obj);
     }

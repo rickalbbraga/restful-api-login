@@ -8,9 +8,9 @@ namespace Restful.Login.Domain.Events
 {
     public class SendQueueEvent : INotificationHandler<CustomerActionNotification>
     {
-        private readonly IRabbitMq _rabbitMq;
+        private readonly IRabbitMqService _rabbitMq;
 
-        public SendQueueEvent(IRabbitMq rabbitMq)
+        public SendQueueEvent(IRabbitMqService rabbitMq)
         {
             _rabbitMq = rabbitMq;
         }

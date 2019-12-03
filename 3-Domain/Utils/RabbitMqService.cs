@@ -2,17 +2,16 @@
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using Restful.Login.Domain.Contracts.Notifications;
-using Restful.Login.Domain.Utils;
 using System;
 using System.Text;
 
-namespace Restful.Login.Domain.Notifications
+namespace Restful.Login.Domain.Utils
 {
-    public class RabbitMq : IRabbitMq
+    public class RabbitMqService : IRabbitMqService
     {
         private readonly RabbitMqConfiguration _rabbitConfiguration;
 
-        public RabbitMq(IOptions<RabbitMqConfiguration> options)
+        public RabbitMqService(IOptions<RabbitMqConfiguration> options)
         {
             _rabbitConfiguration = options.Value;
         }
