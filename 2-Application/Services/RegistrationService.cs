@@ -3,9 +3,7 @@ using Domain.Validations;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
 using Restful.Login.Domain.Contracts.Requests;
-using Restful.Login.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Restful.Login.Application.Services

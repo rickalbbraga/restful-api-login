@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Restful.Login.API.Configurations;
-using Restful.Login.Domain.Utils;
 using Restful.Login.Infra.CrossCutting.IoC;
 using System;
 

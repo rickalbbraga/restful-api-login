@@ -8,9 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Restful.Login.Application.Services;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
-using Restful.Login.Domain.Contracts.Notifications;
-using Restful.Login.Domain.Notifications;
-using Restful.Login.Domain.Utils;
 using Restful.Login.Infra.Data.Repositories;
 
 namespace Restful.Login.Infra.CrossCutting.IoC
