@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Commands;
@@ -21,7 +22,7 @@ namespace Domain.Handlers
 
         public async Task<Customer> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
         {
-            var customer = Customer.Create(request.FirstName, request.LastName, request.Email, request.Phone);
+            var customer = Customer.Create(request.FirstName, request.LastName, request.Email, request.Phone, request.BirthDate);
             
             await _customerRepository.Save(customer);
 

@@ -1,4 +1,6 @@
-﻿namespace Restful.Login.Domain.Contracts.Requests
+﻿using System;
+
+namespace Restful.Login.Domain.Contracts.Requests
 {
     public class CustomerRequest
     {
@@ -9,5 +11,7 @@
         public string Email { get; set; }
 
         public string Phone { get; set; }
+
+        public string BirthDate { get; set; }
     }
 }

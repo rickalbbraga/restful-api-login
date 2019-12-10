@@ -1,5 +1,6 @@
 using Domain.Entities;
 using MediatR;
+using System;
 
 namespace Domain.Commands
 {
@@ -12,5 +13,7 @@ namespace Domain.Commands
         public string Email { get; set; }
         
         public string Phone { get; set; }
+
+        public DateTime BirthDate { get; set; }
     }
 }

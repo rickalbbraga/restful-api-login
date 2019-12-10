@@ -27,13 +27,14 @@ namespace Domain.Validations
             RuleFor(x => x.ConfirmPassword).NotEmpty().WithErrorCode("10016");
             RuleFor(x => x.ConfirmPassword).NotNull().WithErrorCode("10017");
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithErrorCode("10019");
-           // RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithErrorCode("10020");
+            RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithErrorCode("10020");
         }
 
-        private bool DateIsValid(string date)
+        private bool DateIsValid(DateTime date)
         {
             DateTime temp;
-            if (DateTime.TryParse(date, out temp))
+
+            if (DateTime.TryParse(date.ToString(), out temp))
                 return true;
             return false;
         }

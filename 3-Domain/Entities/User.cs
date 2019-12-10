@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using Domain.Contracts.Requests;
 using Domain.Validations;
+using FluentValidation;
 
 namespace Domain.Entities
 {
@@ -26,7 +27,7 @@ namespace Domain.Entities
 
         public DateTime? UpdatedAt { get; set; }
 
-        private User() {}
+        private User() { }
 
         private User(Guid id, string name, string lastName, string email, string confirmEmail,
             DateTime birthDate, string password, string confirmPassword, DateTime createdAt,
@@ -42,6 +43,7 @@ namespace Domain.Entities
             ConfirmPassword = confirmPassword;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
+            BirthDate = (DateTime.TryParse(birthDate.ToString(), out DateTime temp) == true) ? birthDate: DateTime.MinValue;
 
             Validate();
         }
@@ -68,7 +70,7 @@ namespace Domain.Entities
             Validate();
         }
 
-        public void Validate()
+        private void Validate()
         {
             var validation = new UserValidation().Validate(this);
             if (!validation.IsValid)

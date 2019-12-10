@@ -4,6 +4,8 @@ using Domain.Entities;
 using Restful.Login.Domain.Contracts.Requests;
 using Restful.Login.Domain.Contracts.Response;
 using Restful.Login.Domain.Entities;
+using System;
+using System.Globalization;
 
 namespace Restful.Login.Application.Mappers
 {
@@ -37,7 +39,8 @@ namespace Restful.Login.Application.Mappers
                 .ForMember(d => d.FirstName, opt => opt.MapFrom(o => o.FirstName))
                 .ForMember(d => d.LastName, opt => opt.MapFrom(o => o.LastName))
                 .ForMember(d => d.Email, opt => opt.MapFrom(o => o.Email))
-                .ForMember(d => d.Phone, opt => opt.MapFrom(o => o.Phone));
+                .ForMember(d => d.Phone, opt => opt.MapFrom(o => o.Phone))
+                .ForMember(d => d.BirthDate, opt => opt.MapFrom(o => DateTime.UtcNow));
             #endregion
         }
     }
