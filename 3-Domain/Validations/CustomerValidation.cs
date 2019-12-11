@@ -18,11 +18,12 @@ namespace Restful.Login.Domain.Validations
             RuleFor(x => x.FirstName).NotEmpty().WithMessage(ErrorMessageCustomer.FirstNameEmpty);
             RuleFor(x => x.FirstName).Length(3, 50).WithMessage(ErrorMessageCustomer.FirstNameLengthMinorOrBiggerRequired);
             RuleFor(x => x.LastName).NotEmpty().WithMessage(ErrorMessageCustomer.LastNameEmpty);
-            RuleFor(x => x.LastName).Length(3, 50).WithErrorCode("LastName must have min lenght 3 character or max lenght 50 character");
-            RuleFor(x => x.Email).NotEmpty().WithErrorCode("Email is required field");
-            RuleFor(x => x.Email).Matches(patternEmail).WithErrorCode("Invalid Email");
-            RuleFor(x => x.Phone).NotEmpty().WithErrorCode("Phone is required field");
-            RuleFor(x => x.Phone).Matches(patternPhone).WithErrorCode("Invalid Phone");
+            RuleFor(x => x.LastName).Length(3, 50).WithMessage(ErrorMessageCustomer.LastNameLengthMinorOrBiggerRequired);
+            RuleFor(x => x.Email).NotEmpty().WithMessage(ErrorMessageCustomer.EmailEmpty);
+            RuleFor(x => x.Email).Matches(patternEmail).WithMessage(ErrorMessageCustomer.InvalidEmail);
+            RuleFor(x => x.Phone).NotEmpty().WithMessage(ErrorMessageCustomer.PhoneEmpty);
+            RuleFor(x => x.Phone).Matches(patternPhone).WithMessage(ErrorMessageCustomer.InvalidPhone);
+            RuleFor(x => x.Phone).Length(10, 11).WithMessage(ErrorMessageCustomer.InvalidPhone);
             //RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithErrorCode("Invalid BirthDate");
         }
 
