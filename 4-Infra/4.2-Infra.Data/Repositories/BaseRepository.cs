@@ -24,7 +24,7 @@ namespace Infra.Data.Repositories
             {
                 try
                 {
-                    _uow.Context.Set<T>().AddAsync(obj);
+                    _uow.Context.Set<T>().Add(obj);
                     _uow.Commit();
                     
                 }
@@ -58,12 +58,12 @@ namespace Infra.Data.Repositories
             return await _uow.Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
-            return _uow.Context.Set<T>().ToList();
+            return await _uow.Context.Set<T>().ToListAsync();
         }
 
-        public async Task<System.Collections.Generic.IEnumerable<T>> GetByCondition(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> GetByCondition(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
             return await _uow.Context.Set<T>().Where(predicate).ToListAsync();
         }

@@ -1,12 +1,11 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Domain.Commands;
 using Domain.Entities;
 using Domain.Validations;
 using MediatR;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Notifications;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Domain.Handlers
 {

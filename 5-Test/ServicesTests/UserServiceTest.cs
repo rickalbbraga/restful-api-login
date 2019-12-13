@@ -45,7 +45,7 @@ namespace Test.ServicesTests
             var request = CreateRequest();
             var response = userRegisterService.Add(request).Result;
             var notification = userRegisterService as Notifiable;
-            Assert.Equal(true, notification.IsValid);
+            Assert.True(notification.IsValid);
         }
 
         private static UserRequest CreateRequest()

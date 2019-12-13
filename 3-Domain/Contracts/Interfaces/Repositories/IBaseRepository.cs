@@ -18,6 +18,6 @@ namespace Domain.Contracts.Interfaces.Repositories
 
         Task<IEnumerable<T>> GetByCondition(Expression<Func<T, bool>> predicate);
 
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
     }
 }
