@@ -3,14 +3,16 @@ using System;
 using Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Restful.Login.Infra.Data.Migrations
 {
     [DbContext(typeof(UserRegisterContext))]
-    partial class UserRegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20191218180207_AddCustomerInDbset")]
+    partial class AddCustomerInDbset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

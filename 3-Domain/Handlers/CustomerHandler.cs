@@ -22,7 +22,7 @@ namespace Domain.Handlers
 
         public async Task<Customer> Handle(CustomerCreateCommand request, CancellationToken cancellationToken)
         {
-            var customer = Customer.Create(request.FirstName, request.LastName, request.Email, request.Phone, request.BirthDate);
+            var customer = Customer.Create(request.FirstName, request.LastName, request.Email, request.Phone, null);
 
             if (!customer.IsValid)
             {
@@ -30,7 +30,7 @@ namespace Domain.Handlers
                 return null;
             }
                 
-            await _customerRepository.Save(customer);
+            _customerRepository.Add(customer);
 
             await _mediator.Publish(new CustomerActionNotification(customer, ActionNotification.Criado), cancellationToken);
             

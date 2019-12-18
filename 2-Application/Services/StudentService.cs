@@ -41,11 +41,13 @@ namespace Restful.Login.Application.Services
             }
             
             var student = Student.Create(studentRequest.Name);
-            //if (!user.IsValid)
-            //{
-            //    Error = user.Error;
-            //    return null;
-            //}
+
+            if (!student.IsValid)
+            {
+                Error = student.Error;
+                return null;
+            }
+
             //var course = await _courseRepository.FindById(Guid.Parse("B0DDB957-E4D4-482D-88AC-686ECE51CB52"));
             //var studentCourse = StudentCourse.Create(student, course);
             //student.RegistreStudent(studentCourse);
@@ -67,7 +69,7 @@ namespace Restful.Login.Application.Services
 
         public IEnumerable<dynamic> GetAll()
         {
-            return _mapper.Map<IEnumerable<Student>, IEnumerable<StudentResponse>>(_studentRepository.GetAll());
+            return _mapper.Map<IEnumerable<Student>, IEnumerable<StudentResponse>>(_studentRepository.GetAll().Result);
         }
 
         public Task<dynamic> GetById(Guid id)

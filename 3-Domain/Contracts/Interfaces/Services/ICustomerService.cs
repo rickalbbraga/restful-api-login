@@ -1,10 +1,11 @@
-﻿using Restful.Login.Domain.Contracts.Requests;
+﻿using Domain.Commands;
+using Restful.Login.Domain.Contracts.Response;
 using System.Threading.Tasks;
 
 namespace Restful.Login.Domain.Contracts.Interfaces.Services
 {
     public interface ICustomerService
     {
-        Task<dynamic> Add(CustomerRequest customerRequest);
+        Task<CustomerResponse> Add(CustomerCreateCommand command);
     }
 }

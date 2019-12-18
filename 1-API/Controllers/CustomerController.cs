@@ -1,11 +1,9 @@
 ﻿using Domain.Commands;
 using Domain.Contracts.Response;
 using Domain.Validations;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
-using Restful.Login.Domain.Contracts.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,11 +35,11 @@ namespace Restful.Login.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(List<ErrorsResponse>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Post([FromBody]CustomerRequest request)
+        public async Task<ActionResult> Post([FromBody]CustomerCreateCommand command)
         {
             try
             {
-                var response = await _customerService.Add(request);
+                var response = await _customerService.Add(command);
                 var notifications = _customerService as Notifiable;
 
                 if (response == null && notifications.Error.Any())

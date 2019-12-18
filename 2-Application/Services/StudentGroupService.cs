@@ -37,11 +37,6 @@ namespace Restful.Login.Application.Services
 
             var course = await _courseRepository.FindById(studentGroupRequest.CourseId);
             var studentGroup = StudentGroup.Create(studentGroupRequest.Name, course);
-            //if (!user.IsValid)
-            //{
-            //    Error = user.Error;
-            //    return null;
-            //}
 
             _studentGroupRepository.Add(studentGroup);
 

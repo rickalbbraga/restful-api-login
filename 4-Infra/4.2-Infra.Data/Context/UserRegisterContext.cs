@@ -18,6 +18,8 @@ namespace Infra.Data.Context
 
         public DbSet<StudentCourse> StudentCourses { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
         public UserRegisterContext(DbContextOptions<UserRegisterContext> options)
             : base(options)
         {
@@ -32,6 +34,7 @@ namespace Infra.Data.Context
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
             modelBuilder.ApplyConfiguration(new StudentCourseConfiguration());
             modelBuilder.ApplyConfiguration(new StudentGroupConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

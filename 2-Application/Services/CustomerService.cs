@@ -4,7 +4,6 @@ using Domain.Entities;
 using Domain.Validations;
 using MediatR;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
-using Restful.Login.Domain.Contracts.Requests;
 using Restful.Login.Domain.Contracts.Response;
 using System.Threading.Tasks;
 
@@ -23,19 +22,9 @@ namespace Restful.Login.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<dynamic> Add(CustomerRequest customerRequest)
+        public async Task<CustomerResponse> Add(CustomerCreateCommand command)
         {
-            var command = _mapper.Map<CustomerRequest, CustomerCreateCommand>(customerRequest);
             var customer = await _mediator.Send(command);
-
-            var notifications = _mediator as Notifiable;
-
-            if (!notifications.IsValid)
-            {
-                AddErrors(notifications.Error);
-                return null;
-            }
-            
             return _mapper.Map<Customer, CustomerResponse>(customer);
         }
     }

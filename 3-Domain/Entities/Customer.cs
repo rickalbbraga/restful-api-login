@@ -14,9 +14,9 @@ namespace Domain.Entities
         
         public string Phone { get; private set; }
 
-        public DateTime BirthDate { get; private set; }
+        public DateTime? BirthDate { get; private set; }
 
-        private Customer(Guid id, string firstName, string lastName, string email, string phone, DateTime birthDate)
+        private Customer(Guid id, string firstName, string lastName, string email, string phone, DateTime? birthDate)
         {
             Id = id;
             FirstName = firstName;
@@ -28,7 +28,7 @@ namespace Domain.Entities
             Validate();
         }
 
-        public static Customer Create(string firstName, string lastName, string email, string phone, DateTime birthDate)
+        public static Customer Create(string firstName, string lastName, string email, string phone, DateTime? birthDate)
             => new Customer(Guid.NewGuid(), firstName, lastName, email, phone, birthDate);
 
         private void Validate()

@@ -48,7 +48,7 @@ namespace Restful.Login.Application.Services
 
         public IEnumerable<dynamic> GetAll()
         {
-            return _gradeRepository.GetAll();
+            return _gradeRepository.GetAll().Result;
         }
 
         public async Task<dynamic> GetById(Guid id)

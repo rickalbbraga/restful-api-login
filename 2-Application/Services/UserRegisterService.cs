@@ -47,7 +47,7 @@ namespace Application.Services
         }
 
         public IEnumerable<dynamic> GetAll() 
-            => _userRegisterRepository.GetAll();
+            => _userRegisterRepository.GetAll().Result;
 
         public async Task<dynamic> GetById(Guid id) 
             => await _userRegisterRepository.FindById(id);
