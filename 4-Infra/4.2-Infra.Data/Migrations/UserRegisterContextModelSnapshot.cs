@@ -88,7 +88,7 @@ namespace Restful.Login.Infra.Data.Migrations
                         .HasColumnName("id")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnName("birth_date")
                         .HasColumnType("date");
 
@@ -120,11 +120,17 @@ namespace Restful.Login.Infra.Data.Migrations
                         .HasColumnName("password")
                         .HasColumnType("varchar(150)");
 
+                    b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnName("updated_at")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("users");
                 });
@@ -142,6 +148,21 @@ namespace Restful.Login.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("course");
+                });
+
+            modelBuilder.Entity("Restful.Login.Domain.Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("role");
                 });
 
             modelBuilder.Entity("Restful.Login.Domain.Entities.StudentCourse", b =>
@@ -181,6 +202,15 @@ namespace Restful.Login.Infra.Data.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("student_group");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Restful.Login.Domain.Entities.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Restful.Login.Domain.Entities.StudentCourse", b =>

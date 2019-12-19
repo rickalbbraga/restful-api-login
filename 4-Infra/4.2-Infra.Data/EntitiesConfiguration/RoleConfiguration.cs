@@ -4,13 +4,13 @@ using Restful.Login.Domain.Entities;
 
 namespace Restful.Login.Infra.Data.EntitiesConfiguration
 {
-    public class CourseConfiguration : IEntityTypeConfiguration<Course>
+    public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Course> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("course");
+            builder.ToTable("role");
 
-            builder.HasKey(c => c.Id);
+            builder.HasKey(r => r.Id);
 
             builder
                 .Property(c => c.Name)

@@ -28,13 +28,13 @@ namespace Restful.Login.Application.Services
         {
             if (registrationRequest.StudentId == Guid.Empty)
             {
-                Error.Add("StudentId is required");
+                AddError("StudentId is required");
                 return null;
             }
 
             if (registrationRequest.CoursetId == Guid.Empty)
             {
-                Error.Add("CourseId is required");
+                AddError("CourseId is required");
                 return null;
             }
 
@@ -47,13 +47,13 @@ namespace Restful.Login.Application.Services
         {
             if (studentId == Guid.Empty)
             {
-                Error.Add("StudentId is required");
+                AddError("StudentId is required");
                 return;
             }
 
             if (courseId == Guid.Empty)
             {
-                Error.Add("CourseId is required");
+                AddError("CourseId is required");
                 return;
             }
             

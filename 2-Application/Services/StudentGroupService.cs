@@ -31,7 +31,7 @@ namespace Restful.Login.Application.Services
         {
             if (studentGroupRequest == null)
             {
-                Error.Add("20000");
+                AddError("20000");
                 return null;
             }
 

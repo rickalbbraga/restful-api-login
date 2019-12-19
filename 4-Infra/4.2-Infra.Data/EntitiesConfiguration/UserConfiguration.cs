@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Restful.Login.Domain.Entities;
 
 namespace Infra.Data.EntitiesConfiguration
 {
@@ -49,7 +50,12 @@ namespace Infra.Data.EntitiesConfiguration
                 .Property(u => u.ConfirmPassword)
                 .HasColumnName("confirm_password")
                 .HasColumnType("varchar(150)");
-            
+
+            builder
+                .Property(u => u.RoleId)
+                .HasColumnName("role_id")
+                .IsRequired();                
+
             builder
                 .Property(u => u.CreatedAt)
                 .HasColumnName("created_at")
@@ -61,7 +67,16 @@ namespace Infra.Data.EntitiesConfiguration
                 .HasColumnType("date");
 
             builder
+                .HasOne<Role>(u => u.Role)
+                .WithMany(r => r.Users)
+                .HasForeignKey(u => u.RoleId);
+                
+
+            builder
                 .Ignore(u => u.Error);
+
+            builder
+               .Ignore(c => c.IsValid);
         }
     }
 }

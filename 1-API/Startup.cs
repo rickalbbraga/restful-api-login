@@ -20,24 +20,23 @@ namespace Restful.Login.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             SwaggerConfiguration.AddSwaggerService(services);
             ContextConfiguration.AddContext(services, Configuration);
             DependecyInjection.Injections(services, Configuration);
             RabbitConfiguration.Set(services, Configuration);
+            JsonWebTokenConfiguration.Set(services, Configuration);
             AddMapperService.AddMapper(services);
 
             var assembly = AppDomain.CurrentDomain.Load("Restful.Login.Domain");
             services.AddMediatR(assembly);
 
-            services.AddControllers();
-                //.AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddCors();
 
+            services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,6 +50,12 @@ namespace Restful.Login.API
 
             app.UseRouting();
 
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

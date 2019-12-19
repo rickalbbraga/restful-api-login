@@ -22,7 +22,7 @@ namespace Restful.Login.Application.Services
         {
             if (gradeRequest == null)
             {
-                Error.Add("20000");
+                AddError("20000");
                 return null;
             }
 
@@ -41,7 +41,7 @@ namespace Restful.Login.Application.Services
         {
             var entity = _gradeRepository.FindById(id).Result;
             if (entity.Id == null)
-                Error.Add("30000");
+                AddError("30000");
 
             _gradeRepository.Delete(entity);
         }

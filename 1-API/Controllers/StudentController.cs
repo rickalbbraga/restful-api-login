@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts.Response;
 using Domain.Validations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
@@ -32,6 +33,7 @@ namespace Restful.Login.API.Controllers
         /// <response code="500">If internal error server</response>            
         [HttpPost]
         [Route("/students")]
+        [Authorize(Policy = "Bearer", Roles = "Teacher")]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(List<ErrorsResponse>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
@@ -60,6 +62,7 @@ namespace Restful.Login.API.Controllers
         /// <response code="500">If internal error server</response>            
         [HttpGet]
         [Route("/students")]
+        [Authorize(Policy = "Bearer", Roles = "Teacher")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Get()
@@ -82,6 +85,7 @@ namespace Restful.Login.API.Controllers
         /// <response code="500">If internal error server</response>            
         [HttpDelete]
         [Route("/students/{id}")]
+        [Authorize(Policy = "Bearer", Roles = "Teacher")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(Guid id)

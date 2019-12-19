@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Contracts.Requests;
+using Restful.Login.Domain.Contracts.Response;
 
 namespace Domain.Contracts.Interfaces.Services
 {
     public interface IUserRegisterService
     {
-        Task<dynamic> Add(UserRequest userRequest);
+        Task<UserResponse> Add(UserRequest userRequest);
 
         IEnumerable<dynamic> GetAll();
 

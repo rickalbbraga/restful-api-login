@@ -5,7 +5,6 @@ using Restful.Login.Domain.Contracts.Requests;
 using Restful.Login.Domain.Contracts.Response;
 using Restful.Login.Domain.Entities;
 using System;
-using System.Globalization;
 
 namespace Restful.Login.Application.Mappers
 {
@@ -32,6 +31,17 @@ namespace Restful.Login.Application.Mappers
                 .ForMember(d => d.LastName, opt => opt.MapFrom(o => o.LastName))
                 .ForMember(d => d.Email, opt => opt.MapFrom(o => o.Email))
                 .ForMember(d => d.Phone, opt => opt.MapFrom(o => o.Phone));
+
+            CreateMap<User, UserResponse>()
+               .ForMember(d => d.Name, opt => opt.MapFrom(o => o.Name))
+               .ForMember(d => d.LastName, opt => opt.MapFrom(o => o.LastName))
+               .ForMember(d => d.Email, opt => opt.MapFrom(o => o.Email))
+               .ForMember(d => d.BirthDate, opt => opt.MapFrom(o => o.BirthDate))
+               .ForMember(d => d.Role, opt => opt.MapFrom(o => o.Role));
+
+            CreateMap<Role, RoleResponse>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(o => o.Id))
+                .ForMember(d => d.Name, opt => opt.MapFrom(o => o.Name));
             #endregion
 
             #region Request to Command

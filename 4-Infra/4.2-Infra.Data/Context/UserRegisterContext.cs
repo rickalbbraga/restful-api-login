@@ -10,6 +10,8 @@ namespace Infra.Data.Context
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+
         public DbSet<Grade> Grades { get; set; }
 
         public DbSet<Student> Students { get; set; }
@@ -35,6 +37,7 @@ namespace Infra.Data.Context
             modelBuilder.ApplyConfiguration(new StudentCourseConfiguration());
             modelBuilder.ApplyConfiguration(new StudentGroupConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

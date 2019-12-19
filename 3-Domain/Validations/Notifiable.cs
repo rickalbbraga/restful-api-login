@@ -1,3 +1,4 @@
+using Domain.Contracts.Response;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,29 +6,28 @@ namespace Domain.Validations
 {
     public class Notifiable
     {
-        private IList<string> _error = new List<string>();
+        private IList<ErrorsResponse> _error = new List<ErrorsResponse>();
 
         public bool IsValid
         {
             get => _error.Any() ? false : true;
         }            
         
-        public IList<string> Error
+        public IList<ErrorsResponse> Error
         {
             get => _error;
-            protected set => _error = value;
         }
 
         public void AddError(string error)
         {
-            _error.Add(error);
+            _error.Add(new ErrorsResponse(error));
         }
 
         public void AddErrors(IList<string> errors)
         {
             errors
                 .ToList()
-                .ForEach(e => _error.Add(e));
+                .ForEach(e => _error.Add(new ErrorsResponse(e)));
         }
     }
 }

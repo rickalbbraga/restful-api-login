@@ -36,7 +36,7 @@ namespace Restful.Login.Application.Services
         {
             if (studentRequest == null)
             {
-                Error.Add("20000");
+                AddError("20000");
                 return null;
             }
             
@@ -44,7 +44,7 @@ namespace Restful.Login.Application.Services
 
             if (!student.IsValid)
             {
-                Error = student.Error;
+                AddErrors(student.Error);
                 return null;
             }
 
@@ -62,7 +62,7 @@ namespace Restful.Login.Application.Services
         {
             var entity = _studentRepository.FindById(id).Result;
             if (entity.Id == null)
-                Error.Add("30000");
+                AddError("30000");
 
             _studentRepository.Delete(entity);
         }

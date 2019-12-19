@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain.Contracts.Interfaces.Services;
+﻿using Domain.Contracts.Interfaces.Services;
 using Domain.Contracts.Requests;
 using Domain.Contracts.Response;
 using Domain.Validations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Restful.Login.API.Controllers
 {
     [Produces("application/json")]
     [Consumes("application/json")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class RegisterController : ControllerBase
     {
         private readonly IUserRegisterService _userRegisterService;
 
-        public UsersController(IUserRegisterService UserRegisterService)
+        public RegisterController(IUserRegisterService UserRegisterService)
         {
             _userRegisterService = UserRegisterService;
         }
@@ -31,7 +32,8 @@ namespace Restful.Login.API.Controllers
         /// <response code="400">If bad request</response>
         /// <response code="500">If internal error server</response>            
         [HttpPost]
-        [Route("/users")]
+        [Route("/registers")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(List<ErrorsResponse>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
@@ -59,7 +61,8 @@ namespace Restful.Login.API.Controllers
         /// <response code="200">List of users</response>
         /// <response code="500">If internal error server</response>            
         [HttpGet]
-        [Route("/users")]
+        [Route("/registers")]
+        [Authorize(Policy = "Bearer", Roles = "Administrator")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Get()
@@ -82,6 +85,7 @@ namespace Restful.Login.API.Controllers
         /// <response code="500">If internal error server</response>            
         [HttpDelete]
         [Route("/users/{id}")]
+        [Authorize(Policy = "Bearer", Roles = "Administrator,Owner")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(Guid id)
@@ -104,6 +108,7 @@ namespace Restful.Login.API.Controllers
         /// <response code="500">If internal error server</response>            
         [HttpPut]
         [Route("/users/{id}")]
+        [Authorize(Policy = "Bearer", Roles = "Administrator,Owner")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put([FromBody]UserUpdateRequest userUpdateRequest, Guid id)

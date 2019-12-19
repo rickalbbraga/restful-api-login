@@ -22,7 +22,7 @@ namespace Restful.Login.Application.Services
         {
             if (courseRequest == null)
             {
-                Error.Add("20000");
+                AddError("20000");
                 return null;
             }
 

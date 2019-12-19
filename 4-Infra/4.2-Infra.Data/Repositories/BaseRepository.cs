@@ -18,7 +18,7 @@ namespace Infra.Data.Repositories
             _uow = uow;
         }
 
-        public void Add(T obj)
+        public virtual void Add(T obj)
         {
             using (var transaction = _uow.BeginTransaction())
             {
@@ -36,7 +36,7 @@ namespace Infra.Data.Repositories
             }
         }
 
-        public void Delete(T obj)
+        public virtual void Delete(T obj)
         {
             using (var transaction = _uow.BeginTransaction())
             {
@@ -53,7 +53,7 @@ namespace Infra.Data.Repositories
             }
         }
 
-        public async Task<T> FindById(Guid id)
+        public virtual async Task<T> FindById(Guid id)
         {
             return await _uow.Context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
@@ -63,12 +63,12 @@ namespace Infra.Data.Repositories
             return await _uow.Context.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByCondition(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> GetByCondition(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
             return await _uow.Context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public void Update(T obj)
+        public virtual void Update(T obj)
         {
             using (var transaction = _uow.BeginTransaction())
             {

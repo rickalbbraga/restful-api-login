@@ -1,9 +1,8 @@
-using System.Runtime.CompilerServices;
-using System.Linq;
-using System;
 using Domain.Contracts.Requests;
 using Domain.Validations;
-using FluentValidation;
+using Restful.Login.Domain.Entities;
+using System;
+using System.Linq;
 
 namespace Domain.Entities
 {
@@ -17,20 +16,24 @@ namespace Domain.Entities
 
         public string ConfirmEmail { get; private set; }
 
-        public DateTime BirthDate { get; private set; }
+        public DateTime? BirthDate { get; private set; }
         
         public string Password { get; private set; }
 
         public string ConfirmPassword { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public Guid RoleId { get; private set; }
 
-        public DateTime? UpdatedAt { get; set; }
+        public Role Role { get; private set; }
+
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime? UpdatedAt { get; private set; }
 
         private User() { }
 
         private User(Guid id, string name, string lastName, string email, string confirmEmail,
-            DateTime birthDate, string password, string confirmPassword, DateTime createdAt,
+            DateTime? birthDate, string password, string confirmPassword, Role role, DateTime createdAt,
             DateTime? updatedAt)
         {
             Id = id;
@@ -41,6 +44,8 @@ namespace Domain.Entities
             BirthDate = birthDate;
             Password = password;
             ConfirmPassword = confirmPassword;
+            RoleId = role.Id;
+            Role = role;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
             BirthDate = (DateTime.TryParse(birthDate.ToString(), out DateTime temp) == true) ? birthDate: DateTime.MinValue;
@@ -49,14 +54,14 @@ namespace Domain.Entities
         }
 
         public static User Create(string name, string lastName, string email, string confirmEmail,
-            DateTime birthDate, string password, string confirmPassword)
+            DateTime birthDate, string password, string confirmPassword, Role role)
             => new User(Guid.NewGuid(), name, lastName, email, confirmEmail, birthDate, password, 
-                confirmPassword, DateTime.UtcNow, null);
+                confirmPassword, role, DateTime.UtcNow, null);
 
-        public static User Create(UserRequest userRequest)
+        public static User Create(UserRequest userRequest, Role role)
             => new User(Guid.NewGuid(), userRequest.Name, userRequest.LastName, userRequest.Email, 
                 userRequest.ConfirmEmail, Convert.ToDateTime(userRequest.BirthDate), 
-                userRequest.Password, userRequest.ConfirmPassword, DateTime.UtcNow, null);
+                userRequest.Password, userRequest.ConfirmPassword, role, DateTime.UtcNow, null);
 
         public void Update(UserUpdateRequest userRequest)
         {
