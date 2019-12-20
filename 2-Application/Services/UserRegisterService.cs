@@ -32,13 +32,20 @@ namespace Application.Services
         {
             if (userRequest == null)
             {
-                AddError("Invalid Request");
+                AddError("Invalid request");
                 return null;
             }
 
-            var role = await _roleRepository.FindById(userRequest.RoleId);           
+            var role = await _roleRepository.FindById(userRequest.RoleId);
+
+            if (role is null)
+            {
+                AddError("Invalid roleId");
+                return null;
+            }
 
             var user = User.Create(userRequest, role);
+
             if (!user.IsValid)
             {
                 AddErrors(user.Error);

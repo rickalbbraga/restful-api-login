@@ -1,6 +1,7 @@
 using System;
 using Domain.Entities;
 using FluentValidation;
+using Restful.Login.Domain.Enums.Errors;
 
 namespace Domain.Validations
 {
@@ -8,41 +9,38 @@ namespace Domain.Validations
     {
         public UserValidation()
         {
-            RuleFor(x => x.Name).NotEmpty().WithErrorCode("10000");
-            RuleFor(x => x.Name).NotNull().WithErrorCode("10001"); 
-            RuleFor(x => x.Name).Length(3, 50).WithErrorCode("10002");          
-            RuleFor(x => x.LastName).NotEmpty().WithErrorCode("10003");
-            RuleFor(x => x.LastName).NotNull().WithErrorCode("10004"); 
-            RuleFor(x => x.LastName).Length(3, 50).WithErrorCode("10005");
-            RuleFor(x => x.Email).NotEmpty().WithErrorCode("10006");
-            RuleFor(x => x.Email).NotNull().WithErrorCode("10007");
-            RuleFor(x => x.Email).EmailAddress().WithErrorCode("10008");
-            RuleFor(x => x.ConfirmEmail).NotEmpty().WithErrorCode("10009");
-            RuleFor(x => x.ConfirmEmail).NotNull().WithErrorCode("10010");
-            RuleFor(x => x.ConfirmEmail).EmailAddress().WithErrorCode("10011");
-            RuleFor(x => x.ConfirmEmail).Equal(x => x.Email).WithErrorCode("10012");
-            RuleFor(x => x.Password).NotEmpty().WithErrorCode("10013");
-            RuleFor(x => x.Password).NotNull().WithErrorCode("10014");
-            RuleFor(x => x.Password).MinimumLength(8).WithErrorCode("10015");
-            RuleFor(x => x.ConfirmPassword).NotEmpty().WithErrorCode("10016");
-            RuleFor(x => x.ConfirmPassword).NotNull().WithErrorCode("10017");
-            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithErrorCode("10019");
-            RuleFor(x => x.Role).NotEmpty().WithErrorCode("10021");
-            RuleFor(x => x.Role).NotNull().WithErrorCode("10022");
-            RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithErrorCode("10020");
+            RuleFor(x => x.Name).NotEmpty().WithMessage(ErrorMessageUser.NameEmpty);
+            RuleFor(x => x.Name).NotNull().WithMessage(ErrorMessageUser.NameEmpty);
+            RuleFor(x => x.Name).Length(3, 50).WithMessage(ErrorMessageUser.NameLengthMinorOrBiggerRequired);          
+            RuleFor(x => x.LastName).NotEmpty().WithMessage(ErrorMessageUser.LastNameEmpty);
+            RuleFor(x => x.LastName).NotNull().WithMessage(ErrorMessageUser.LastNameEmpty); 
+            RuleFor(x => x.LastName).Length(3, 50).WithMessage(ErrorMessageUser.LastNameLengthMinorOrBiggerRequired);
+            RuleFor(x => x.Email).NotEmpty().WithMessage(ErrorMessageUser.EmailEmpty);
+            RuleFor(x => x.Email).NotNull().WithMessage(ErrorMessageUser.EmailEmpty);
+            RuleFor(x => x.Email).EmailAddress().WithMessage(ErrorMessageUser.InvalidEmail);
+            RuleFor(x => x.ConfirmEmail).NotEmpty().WithMessage("ConfirmEmail is required field");
+            RuleFor(x => x.ConfirmEmail).NotNull().WithMessage("ConfirmEmail is required field");
+            RuleFor(x => x.ConfirmEmail).Equal(x => x.Email).WithMessage("ConfirmEmail is different from email");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required field");
+            RuleFor(x => x.Password).NotNull().WithMessage("Password is required field");
+            RuleFor(x => x.Password).MinimumLength(8).WithMessage("Password have must min lenght 3 and max length 50 characters");
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("ConfirmPassword is required field");
+            RuleFor(x => x.ConfirmPassword).NotNull().WithMessage("ConfirmPassword is required field");
+            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("ConfirmPassword is different from password");
+            RuleFor(x => x.Role).NotEmpty().WithMessage("Role is required field");
+            RuleFor(x => x.Role).NotNull().WithMessage("Role is required field");
+            RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithMessage("Invalid birthDate");
         }
 
         private bool DateIsValid(DateTime? date)
         {
-            DateTime temp;
-
             if (date is null)
-                return false;
-
-            if (DateTime.TryParse(date.ToString(), out temp))
                 return true;
 
-            return false;
+            if (date.Equals(DateTime.MinValue))
+                return false;
+
+            return true;
         }
     }
 }

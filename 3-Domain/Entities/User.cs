@@ -79,7 +79,7 @@ namespace Domain.Entities
         {
             var validation = new UserValidation().Validate(this);
             if (!validation.IsValid)
-                Error = validation.Errors.Select(c => c.ErrorCode).ToList();
+                Error = validation.Errors.Select(c => c.ErrorMessage).ToList();
         }
     }
 }

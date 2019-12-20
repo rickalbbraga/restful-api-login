@@ -10,8 +10,6 @@ namespace Restful.Login.Test.EntitiesTests
 {
     public class CustomerTests
     {
-        private Customer CustomerFirstNameEmpty = Customer.Create(string.Empty, "Teste", "teste@teste.com", "11987654321", DateTime.UtcNow);
-
         [Fact]
         public void CustomerCreatedSuccess()
         {

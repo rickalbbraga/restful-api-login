@@ -1,122 +1,49 @@
 using Domain.Contracts.Requests;
 using Entity = Domain.Entities;
 using Xunit;
+using System;
+using Restful.Login.Domain.Entities;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using Restful.Login.Domain.Enums.Errors;
 
 namespace Test.EntitiesTests.User
 {
     public class UserTest
     {
-        //private UserRequest request;
-
-        //[Fact]
-        //public void CreateSuccess()
-        //{
-        //    var user = Entity.User.Create(CreateRequest());
-        //    Assert.True(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithNameEmpty()
-        //{
-        //    var request = CreateRequest();
-        //    request.Name = string.Empty;
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithLastNameEmpty()
-        //{
-        //    var request = CreateRequest();
-        //    request.LastName = string.Empty;
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithEmailEmpty()
-        //{
-        //    var request = CreateRequest();
-        //    request.Email = string.Empty;
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithConfirmEmailEmpty()
-        //{
-        //    var request = CreateRequest();
-        //    request.ConfirmEmail = string.Empty;
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithConfirmEmailNotEqualEmail()
-        //{
-        //    var request = CreateRequest();
-        //    request.ConfirmEmail = "teste@te.com.br";
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWithEmailNotEmailAddress()
-        //{
-        //    var request = CreateRequest();
-        //    request.Email = "teste.com";
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWitPasswordEmpty()
-        //{
-        //    var request = CreateRequest();
-        //    request.Password = string.Empty;
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWitPasswordLessThan8()
-        //{
-        //    var request = CreateRequest();
-        //    request.Password = "asdf157";
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        //[Fact]
-        //public void CreateWitConfirmPasswordNotEqualPassword()
-        //{
-        //    var request = CreateRequest();
-        //    request.ConfirmPassword = "asdf157";
-        //    var user = Entity.User.Create(request);
-        //    Assert.False(user.IsValid);
-        //}
-
-        // [Fact]
-        // public void CreateWithBirthDateInvalid()
-        // {
-        //     var request = CreateRequest();
-        //     request.BirthDate = "15/18/1990";
-        //     var user = Entity.User.Create(request);
-        //     Assert.False(user.IsValid);
-        // }
-
-        private static UserRequest CreateRequest()
+        [Fact]
+        public void CreateSuccess()
         {
-            return new UserRequest
-            {
-                Name = "User Test",
-                LastName = "Last Name Test",
-                Email = "test@test.com.br",
-                ConfirmEmail = "test@test.com.br",
-                BirthDate = "15/04/2019",
-                Password = "Test!23f",
-                ConfirmPassword = "Test!23f"
-            };
+            var user = Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.Parse("1990-10-10"), "Teste!@3", "Teste!@3", Role.Create("Owner"));
+            Assert.True(user.IsValid);
         }
+
+        [Theory]
+        [ClassData(typeof(UserTestsCaseData))]
+        public void UserCreatedWithError(Entity.User user, string errorMessage)
+        {
+            Assert.False(user.IsValid);
+            Assert.Equal(errorMessage, user.Error.FirstOrDefault());
+        }
+    }
+
+    public class UserTestsCaseData : IEnumerable<object[]>
+    {
+        private readonly List<object[]> _data = new List<object[]>
+            {
+                new object[] { Entity.User.Create(string.Empty, "Teste", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.NameEmpty },
+                new object[] { Entity.User.Create("Testeaçslkdfalskjfaçsdkfjalskdjfasdçfalsdkfjasdlfkjasdçfasdlfakdfjasdçfkajdflajdflajdfajsdflajdflafakdfaldfkajsdlfkajsdlfajdlçfjasldfasdlf", string.Empty, "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.NameLengthMinorOrBiggerRequired },
+                new object[] { Entity.User.Create("Teste", string.Empty, "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.LastNameEmpty },
+                new object[] { Entity.User.Create("Teste", "Testealsjdlfajsdlfjasdlfjasldkjfalsdjfalksdjfalksdjfaklsdjflaksdjfalkjdflaksdjflakdjfalksdjfalksdjfalksdjfalkdjfalkdjfjfa", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.LastNameLengthMinorOrBiggerRequired },
+                new object[] { Entity.User.Create("Teste", "Teste", string.Empty, "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.EmailEmpty },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.InvalidEmail },
+                //new object[] { Customer.Create("Teste", "ABed", "teste@teste.com", string.Empty, DateTime.UtcNow), ErrorMessageCustomer.PhoneEmpty },
+                //new object[] { Customer.Create("Teste", "ABed", "teste@teste.com", "1198765432187", DateTime.UtcNow), ErrorMessageCustomer.InvalidPhone },
+            };
+
+        public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
