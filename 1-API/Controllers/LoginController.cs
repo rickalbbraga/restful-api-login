@@ -3,6 +3,7 @@ using Domain.Validations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Restful.Login.Domain.Contracts.Interfaces.Services;
 using Restful.Login.Domain.Contracts.Requests;
 using Restful.Login.Domain.Contracts.Response;
@@ -19,10 +20,14 @@ namespace Restful.Login.API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _loginService;
+        private readonly ILogger<LoginController> _logger;
 
-        public LoginController(ILoginService loginService)
+        public LoginController(
+            ILoginService loginService,
+            ILogger<LoginController> logger)
         {
             _loginService = loginService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -42,6 +47,8 @@ namespace Restful.Login.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Here is authenticate on application");
+
                 var response = await _loginService.Authentication(loginRequest);
                 var notifications = _loginService as Notifiable;
 
@@ -52,7 +59,9 @@ namespace Restful.Login.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
+                var error = new { Error = ex.ToString(), Namespace = "Restful.Login.API", Date = DateTime.UtcNow };
+                _logger.LogError(error.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Error Server.");
             }
         }
 

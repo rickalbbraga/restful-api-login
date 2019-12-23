@@ -38,8 +38,13 @@ namespace Test.EntitiesTests.User
                 new object[] { Entity.User.Create("Teste", "Testealsjdlfajsdlfjasdlfjasldkjfalsdjfalksdjfalksdjfaklsdjflaksdjfalkjdflaksdjflakdjfalksdjfalksdjfalksdjfalkdjfalkdjfjfa", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.LastNameLengthMinorOrBiggerRequired },
                 new object[] { Entity.User.Create("Teste", "Teste", string.Empty, "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.EmailEmpty },
                 new object[] { Entity.User.Create("Teste", "Teste", "teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.InvalidEmail },
-                //new object[] { Customer.Create("Teste", "ABed", "teste@teste.com", string.Empty, DateTime.UtcNow), ErrorMessageCustomer.PhoneEmpty },
-                //new object[] { Customer.Create("Teste", "ABed", "teste@teste.com", "1198765432187", DateTime.UtcNow), ErrorMessageCustomer.InvalidPhone },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", string.Empty, DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.ConfirmEmailEmpty },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste.com.br", DateTime.UtcNow, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.ConfirmEmailNotEqualEmail },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, string.Empty, "Teste!@3", Role.Create("Owner")), ErrorMessageUser.PasswordEmpty },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", string.Empty, Role.Create("Owner")), ErrorMessageUser.ConfirmPasswordEmpty },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@", Role.Create("Owner")), ErrorMessageUser.ConfirmPasswordNotEqualPassword },
+                //new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.UtcNow, "Teste!@3", "Teste!@3", null), ErrorMessageUser.RoleEmpty },
+                new object[] { Entity.User.Create("Teste", "Teste", "teste@teste.com", "teste@teste.com", DateTime.MinValue, "Teste!@3", "Teste!@3", Role.Create("Owner")), ErrorMessageUser.InvalidBirthDate },
             };
 
         public IEnumerator<object[]> GetEnumerator() => _data.GetEnumerator();

@@ -18,18 +18,18 @@ namespace Domain.Validations
             RuleFor(x => x.Email).NotEmpty().WithMessage(ErrorMessageUser.EmailEmpty);
             RuleFor(x => x.Email).NotNull().WithMessage(ErrorMessageUser.EmailEmpty);
             RuleFor(x => x.Email).EmailAddress().WithMessage(ErrorMessageUser.InvalidEmail);
-            RuleFor(x => x.ConfirmEmail).NotEmpty().WithMessage("ConfirmEmail is required field");
-            RuleFor(x => x.ConfirmEmail).NotNull().WithMessage("ConfirmEmail is required field");
-            RuleFor(x => x.ConfirmEmail).Equal(x => x.Email).WithMessage("ConfirmEmail is different from email");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required field");
-            RuleFor(x => x.Password).NotNull().WithMessage("Password is required field");
-            RuleFor(x => x.Password).MinimumLength(8).WithMessage("Password have must min lenght 3 and max length 50 characters");
-            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("ConfirmPassword is required field");
-            RuleFor(x => x.ConfirmPassword).NotNull().WithMessage("ConfirmPassword is required field");
-            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("ConfirmPassword is different from password");
-            RuleFor(x => x.Role).NotEmpty().WithMessage("Role is required field");
-            RuleFor(x => x.Role).NotNull().WithMessage("Role is required field");
-            RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithMessage("Invalid birthDate");
+            RuleFor(x => x.ConfirmEmail).NotEmpty().WithMessage(ErrorMessageUser.ConfirmEmailEmpty);
+            RuleFor(x => x.ConfirmEmail).NotNull().WithMessage(ErrorMessageUser.ConfirmEmailEmpty);
+            RuleFor(x => x.ConfirmEmail).Equal(x => x.Email).WithMessage(ErrorMessageUser.ConfirmEmailNotEqualEmail);
+            RuleFor(x => x.Password).NotEmpty().WithMessage(ErrorMessageUser.PasswordEmpty);
+            RuleFor(x => x.Password).NotNull().WithMessage(ErrorMessageUser.PasswordEmpty);
+            RuleFor(x => x.Password).MinimumLength(8).WithMessage(ErrorMessageUser.PasswordLengthMinorOrBiggerRequired);
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage(ErrorMessageUser.ConfirmPasswordEmpty);
+            RuleFor(x => x.ConfirmPassword).NotNull().WithMessage(ErrorMessageUser.ConfirmPasswordEmpty);
+            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage(ErrorMessageUser.ConfirmPasswordNotEqualPassword);
+            RuleFor(x => x.Role).NotEmpty().WithMessage(ErrorMessageUser.RoleEmpty);
+            RuleFor(x => x.Role).NotNull().WithMessage(ErrorMessageUser.RoleEmpty);
+            RuleFor(x => x.BirthDate).Must(date => DateIsValid(date)).WithMessage(ErrorMessageUser.InvalidBirthDate);
         }
 
         private bool DateIsValid(DateTime? date)
