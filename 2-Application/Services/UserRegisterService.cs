@@ -9,6 +9,7 @@ using Domain.Entities;
 using Domain.Validations;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Contracts.Response;
+using Restful.Login.Domain.Enums.Errors;
 
 namespace Application.Services
 {
@@ -32,7 +33,7 @@ namespace Application.Services
         {
             if (userRequest == null)
             {
-                AddError("Invalid request");
+                AddError(ErrorMessageUserRegisterService.InvalidRequest);
                 return null;
             }
 
@@ -40,7 +41,7 @@ namespace Application.Services
 
             if (role is null)
             {
-                AddError("Invalid roleId");
+                AddError(ErrorMessageUserRegisterService.InvalidRoleId);
                 return null;
             }
 

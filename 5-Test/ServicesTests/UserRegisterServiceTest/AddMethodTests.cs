@@ -8,10 +8,9 @@ using Domain.Validations;
 using Moq;
 using Restful.Login.Domain.Contracts.Interfaces.Repositories;
 using Restful.Login.Domain.Entities;
+using Restful.Login.Domain.Enums.Errors;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -34,7 +33,7 @@ namespace Restful.Login.Test.ServicesTests.UserRegisterServiceTest
         {
             userRegisterService.Add(null).Wait();
             var notification = userRegisterService as Notifiable;
-            Assert.Equal("Invalid Request", notification.Error.FirstOrDefault().Message);
+            Assert.Equal(ErrorMessageUserRegisterService.InvalidRequest, notification.Error.FirstOrDefault().Message);
         }
 
         [Fact]
@@ -45,7 +44,7 @@ namespace Restful.Login.Test.ServicesTests.UserRegisterServiceTest
 
             var response = userRegisterService.Add(request).Result;
             var notification = userRegisterService as Notifiable;
-            Assert.Equal("Invalid roleId", notification.Error.FirstOrDefault().Message);
+            Assert.Equal(ErrorMessageUserRegisterService.InvalidRoleId, notification.Error.FirstOrDefault().Message);
         }
 
         [Fact]
