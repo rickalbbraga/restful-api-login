@@ -9,5 +9,7 @@
         }
 
         public static string InvalidRoleId { get { return new ErrorMessageUserRegisterService("Invalid roleId").Value; } }
+
+        public static string UserNotRegistered { get { return new ErrorMessageUserRegisterService("User not registered").Value; } }
     }
 }

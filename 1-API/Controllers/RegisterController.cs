@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Restful.Login.API.Controllers
@@ -48,7 +49,7 @@ namespace Restful.Login.API.Controllers
 
                 return Created(string.Empty, response);    
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.ToString());
             }
@@ -83,14 +84,22 @@ namespace Restful.Login.API.Controllers
         /// <response code="204">No Content</response>
         /// <response code="500">If internal error server</response>            
         [HttpDelete]
-        [Route("/users/{id}")]
+        [Route("/users")]
         [Authorize(Policy = "Bearer", Roles = "Administrator,Owner")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(List<ErrorsResponse>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete()
         {
             try
             {
+                Guid id = Guid.Empty;
+
+                if (HttpContext.User.Identity is ClaimsIdentity identity)
+                    id = Guid.Parse(identity.FindFirst(ClaimTypes.Sid).Value);
+
                 await Task.Run(() => _userRegisterService.Delete(id));
                 return NoContent();
             }

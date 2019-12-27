@@ -61,7 +61,7 @@ namespace Application.Services
         {
             var entity = _userRegisterRepository.FindById(id).Result;
             if (entity.Id == null)
-                AddError("30000");
+                AddError(ErrorMessageUserRegisterService.UserNotRegistered);
             
             _userRegisterRepository.Delete(entity);
         }

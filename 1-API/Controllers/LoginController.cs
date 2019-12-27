@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts.Response;
 using Domain.Validations;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Restful.Login.Domain.Contracts.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Restful.Login.API.Controllers
@@ -81,15 +83,11 @@ namespace Restful.Login.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ErrorsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Delete([FromBody]LoginRequest loginRequest)
+        public async Task<ActionResult> Delete()
         {
             try
             {
-                //var response = await _loginService.Authentication(loginRequest);
-                //var notifications = _loginService as Notifiable;
-
-                //if (response == null && notifications.Error.Any())
-                //    return BadRequest(notifications.Error);
+                var bearer = await HttpContext.GetTokenAsync("access_token");
 
                 return NoContent();
             }
